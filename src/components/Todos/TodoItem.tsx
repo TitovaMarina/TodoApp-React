@@ -11,11 +11,15 @@ interface TodoItemProps {
 }
 
 export const TodoItem: React.FC<TodoItemProps> = ({todo, checkTodo, deleteTodo, selectTodoIdForEdit }) => {
+  
+  const checkboxClick = () => {
+    checkTodo(todo.id);
+  }
 
   return (
     <div className={commonStyles.todoItemContainer}>
         <label className={commonStyles.todoTaskContainer}>
-          <input className={styles.todoCheckBox} type="checkbox" onClick={()=> checkTodo(todo.id)}></input>
+          <input className={styles.todoCheckBox} type="checkbox" onChange={checkboxClick} checked={todo.checked} ></input>          
           <span aria-hidden style={{
             opacity: todo.checked ? 0.5 : 1,
             textDecoration: todo.checked ? 'line-through' : 'none',

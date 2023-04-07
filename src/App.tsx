@@ -41,9 +41,7 @@ export const App: React.FC = () => {
     }));
   }
 
-  const editTodo = (title: string) => {
-    console.log('todoIdForEdit=',todoIdForEdit);
-    
+  const editTodo = (title: string) => {        
     setTodos(todos.map(todo => {
       if (todo.id === todoIdForEdit){
         return { ...todo, title};
