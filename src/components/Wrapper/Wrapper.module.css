@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 70%;
+
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.blue {
+  background-color: #b9f5ff;
+}
+
+.green{
+  background-color: #cfffc3;
+}
+
+.white{
+  background-color: #ffffff;
+}
