@@ -9,7 +9,7 @@
   padding: 20px;
   margin: 10px;
   width: 70%;
-
+  font-size: 20px;
 }
 
 .column {
@@ -24,10 +24,10 @@
   background-color: #b9f5ff;
 }
 
-.green{
+.green {
   background-color: #cfffc3;
 }
 
-.white{
+.white {
   background-color: #ffffff;
 }
