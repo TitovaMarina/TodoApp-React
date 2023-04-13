@@ -7,28 +7,10 @@ import { Wrapper } from './components/Wrapper/Wrapper';
 import * as helpers from './data/helpers';
 
 export const App: React.FC = () => {
-  const [todos, setTodos] = React.useState<Array<Todo>>(
-    helpers.getDataFromLocalStorage()
-  );
+  const [todos, setTodos] = helpers.useLocalStorage<Todo[]>('dataLocalStorage');
   const [todoIdForEdit, setTodoIdForEdit] = React.useState<number | null>(null);
 
-  React.useEffect(() => {
-    localStorage.setItem('dataLocalStorage', JSON.stringify(todos));
-    //for debug
-    console.log('todos=', todos);
-  }, [todos]);
-
-  React.useEffect(() => {
-    const todoItems = helpers.getDataFromLocalStorage();
-    if (todoItems) {
-      setTodos(todoItems);
-    }
-  }, []);
-
-  const selectTodoIdForEdit = (id: number) => {
-    setTodoIdForEdit(id);
-  };
-
+  const selectTodoIdForEdit = (id: number) => setTodoIdForEdit(id);
   const addTodo = (title: string) => {
     if (!title) {
       alert('Please enter Todo task name first.');
