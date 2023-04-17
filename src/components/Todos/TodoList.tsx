@@ -1,8 +1,8 @@
 import React from 'react';
-//import styles from './TodoList.module.css';
-import { TodoItem } from './TodoItem'
+
+import { TodoItem } from './TodoItem';
 import { TodoPanel } from './TodoPanel';
-import { Wrapper } from '../Wrapper/Wrapper';
+import { StyledWrapper } from '../Wrapper/StyledWrapper';
 
 interface TodoListProps {
   todos: Todo[];
@@ -13,24 +13,34 @@ interface TodoListProps {
   todoIdForEdit: number | null;
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, checkTodo, deleteTodo, selectTodoIdForEdit, changeTodo, todoIdForEdit }) => {
-
+export const TodoList: React.FC<TodoListProps> = ({
+  todos,
+  checkTodo,
+  deleteTodo,
+  selectTodoIdForEdit,
+  changeTodo,
+  todoIdForEdit,
+}) => {
   return (
-    <Wrapper color='green' direction="column">
-      {todos.map((todo) => 
-        (todo.id === todoIdForEdit ? (
-          <TodoPanel key={todo.id} mode="edit" onClick={changeTodo} todoTitle={todo.title} />
-        ) : (
-          <TodoItem 
+    <StyledWrapper color="#fff690" direction="column">
+      {todos.map((todo) =>
+        todo.id === todoIdForEdit ? (
+          <TodoPanel
             key={todo.id}
-            todo={todo} 
-            checkTodo={checkTodo} 
-            deleteTodo={deleteTodo} 
+            mode="edit"
+            onClick={changeTodo}
+            todoTitle={todo.title}
+          />
+        ) : (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            checkTodo={checkTodo}
+            deleteTodo={deleteTodo}
             selectTodoIdForEdit={selectTodoIdForEdit}
-            />
-        ))
+          />
+        )
       )}
-    </Wrapper>
+    </StyledWrapper>
   );
-}
-    
+};

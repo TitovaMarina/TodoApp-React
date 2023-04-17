@@ -3,7 +3,7 @@ import './App.css';
 import { Header } from './components/Header/Header';
 import { TodoList } from './components/Todos/TodoList';
 import { TodoPanel } from './components/Todos/TodoPanel';
-import { Wrapper } from './components/Wrapper/Wrapper';
+import { StyledWrapper } from './components/Wrapper/StyledWrapper';
 import * as helpers from './data/helpers';
 
 export const App: React.FC = () => {
@@ -51,9 +51,9 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       <Header todoCount={todos.length} />
-      <Wrapper color="blue" direction="row">
+      <StyledWrapper color="#7affe0" direction="row">
         <TodoPanel mode="add" onClick={addTodo} todoTitle="" />
-      </Wrapper>
+      </StyledWrapper>
       {todos.length > 0 ? (
         <TodoList
           todos={todos}
@@ -64,9 +64,9 @@ export const App: React.FC = () => {
           selectTodoIdForEdit={selectTodoIdForEdit}
         />
       ) : (
-        <Wrapper color="green" direction="column">
+        <StyledWrapper color="#fff690" direction="column">
           You have no tasks.
-        </Wrapper>
+        </StyledWrapper>
       )}
     </div>
   );
