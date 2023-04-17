@@ -1,18 +1,23 @@
-import React from 'react';
-import styles from './Button.module.css';
+import React, { ReactNode } from 'react';
+import Button from '@mui/material/Button';
 
 interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
- color: 'green' | 'red' | 'blue';
+  color: 'primary' | 'secondary' | 'success' | 'error';
+  startIcon: ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = (props) => {
-  const { color, children, onClick} = props;
-
-  const className = `${styles.button} ${styles[`button_${color}`]}`;
+export const MuiButton: React.FC<ButtonProps> = (props) => {
+  const { startIcon, color, children, onClick } = props;
 
   return (
-     <button className={className} onClick={onClick} {...props}>{children}</button>
-       
+    <Button
+      sx={{ ml: '5px', height: 'fit-content', minWidth: 'fit-content' }}
+      variant="contained"
+      color={color}
+      startIcon={startIcon}
+      onClick={onClick}
+    >
+      {children}
+    </Button>
   );
-}
-    
+};

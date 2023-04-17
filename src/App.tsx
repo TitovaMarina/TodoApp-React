@@ -3,30 +3,19 @@ import './App.css';
 import { Header } from './components/Header/Header';
 import { TodoList } from './components/Todos/TodoList';
 import { TodoPanel } from './components/Todos/TodoPanel';
-import { Wrapper } from './components/Wrapper/Wrapper';
-
-const DEFAULT_TODOS = [
-  {
-    id: 1,
-    title: 'Write React app',
-    checked: false,
-  },
-];
+import { StyledWrapper } from './components/Wrapper/StyledWrapper';
+import * as helpers from './data/helpers';
 
 export const App: React.FC = () => {
-  const [todos, setTodos] = React.useState(DEFAULT_TODOS);
+  const [todos, setTodos] = helpers.useLocalStorage<Todo[]>('dataLocalStorage');
   const [todoIdForEdit, setTodoIdForEdit] = React.useState<number | null>(null);
 
-  //for debug
-  React.useEffect(() => {
-    console.log('todos=', todos);
-  }, [todos]);
-
-  const selectTodoIdForEdit = (id: number) => {
-    setTodoIdForEdit(id);
-  };
-
+  const selectTodoIdForEdit = (id: number) => setTodoIdForEdit(id);
   const addTodo = (title: string) => {
+    if (!title) {
+      alert('Please enter Todo task name first.');
+      return;
+    }
     const id = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
 
     setTodos([...todos, { id, title, checked: false }]);
@@ -62,9 +51,9 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       <Header todoCount={todos.length} />
-      <Wrapper color="blue" direction="row">
+      <StyledWrapper color="#7affe0" direction="row">
         <TodoPanel mode="add" onClick={addTodo} todoTitle="" />
-      </Wrapper>
+      </StyledWrapper>
       {todos.length > 0 ? (
         <TodoList
           todos={todos}
@@ -75,9 +64,9 @@ export const App: React.FC = () => {
           selectTodoIdForEdit={selectTodoIdForEdit}
         />
       ) : (
-        <Wrapper color="green" direction="column">
+        <StyledWrapper color="#fff690" direction="column">
           You have no tasks.
-        </Wrapper>
+        </StyledWrapper>
       )}
     </div>
   );

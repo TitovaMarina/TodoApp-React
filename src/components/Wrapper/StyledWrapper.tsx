@@ -3,12 +3,12 @@ import Box from '@mui/material/Box';
 
 interface WrapperProps {
   children: ReactNode | ReactElement;
-
+  color: string;
   direction: 'column' | 'row';
 }
 
-export const Wrapper: React.FC<WrapperProps> = (props) => {
-  const { children, direction } = props;
+export const StyledWrapper: React.FC<WrapperProps> = (props) => {
+  const { children, direction, color } = props;
 
   return (
     <Box
@@ -18,8 +18,14 @@ export const Wrapper: React.FC<WrapperProps> = (props) => {
         justifyContent: 'space-between',
         flexWrap: 'nowrap',
         flexDirection: direction,
-        width: 1,
+
+        width: '70%',
         alignContent: 'center',
+        p: '20px',
+        m: '10px',
+        border: '1px solid',
+        borderRadius: '5px',
+        backgroundColor: color,
       }}
     >
       {children}

@@ -1,7 +1,10 @@
 import React from 'react';
-import { Button } from '../Button/Button';
-import styles from './TodoItem.module.css';
-import commonStyles from '../../styles/commonStyles.module.css'
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import { Wrapper } from '../Wrapper/Wrapper';
+import { MuiButton } from '../Button/Button';
 
 interface TodoItemProps {
   todo: Todo;
@@ -10,28 +13,47 @@ interface TodoItemProps {
   selectTodoIdForEdit: (id: number) => void;
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({todo, checkTodo, deleteTodo, selectTodoIdForEdit }) => {
-  
+export const TodoItem: React.FC<TodoItemProps> = ({
+  todo,
+  checkTodo,
+  deleteTodo,
+  selectTodoIdForEdit,
+}) => {
   const checkboxClick = () => {
     checkTodo(todo.id);
-  }
+  };
 
   return (
-    <div className={commonStyles.todoItemContainer}>
-        <label className={commonStyles.todoTaskContainer}>
-          <input className={styles.todoCheckBox} type="checkbox" onChange={checkboxClick} checked={todo.checked} ></input>          
-          <span aria-hidden style={{
-            opacity: todo.checked ? 0.5 : 1,
-            textDecoration: todo.checked ? 'line-through' : 'none',
-          }}>{todo.title}</span>
+    <Wrapper direction="row">
+      <FormControlLabel
+        control={<Checkbox onChange={checkboxClick} checked={todo.checked} />}
+        label={todo.title}
+        sx={{
+          border: '1px solid #afafafa1',
+          backgroundColor: 'white',
+          m: 0.5,
+          borderRadius: '5px',
+          width: '-webkit-fill-available',
+          opacity: todo.checked ? 0.5 : 1,
+          textDecoration: todo.checked ? 'line-through' : 'none',
+        }}
+      />
 
-        </label>
+      <MuiButton
+        onClick={() => selectTodoIdForEdit(todo.id)}
+        startIcon={<EditIcon />}
+        color="success"
+      >
+        Edit
+      </MuiButton>
 
-        <Button onClick={()=> selectTodoIdForEdit(todo.id)} color="green">Edit</Button>
-        <Button onClick={()=> deleteTodo(todo.id)} color="red">Delete</Button>
-
-    </div>
-
-
+      <MuiButton
+        onClick={() => deleteTodo(todo.id)}
+        startIcon={<DeleteIcon />}
+        color="error"
+      >
+        Delete
+      </MuiButton>
+    </Wrapper>
   );
-}
+};
