@@ -4,10 +4,12 @@ import { Header } from './components/Header/Header';
 import { TodoList } from './components/Todos/TodoList';
 import { TodoPanel } from './components/Todos/TodoPanel';
 import { StyledWrapper } from './components/Wrapper/StyledWrapper';
-import * as helpers from './data/helpers';
+import { useLocalStorage } from './hooks/useLocalStorage';
+
+const HEADER_TEXT = `ToDo tasks list`;
 
 export const App: React.FC = () => {
-  const [todos, setTodos] = helpers.useLocalStorage<Todo[]>('dataLocalStorage');
+  const [todos, setTodos] = useLocalStorage<Todo[]>('dataLocalStorage');
   const [todoIdForEdit, setTodoIdForEdit] = React.useState<number | null>(null);
 
   const selectTodoIdForEdit = (id: number) => setTodoIdForEdit(id);
@@ -16,7 +18,7 @@ export const App: React.FC = () => {
       alert('Please enter Todo task name first.');
       return;
     }
-    const id = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
+    const id = todos ? todos[todos.length - 1].id + 1 : 1;
 
     setTodos([...todos, { id, title, checked: false }]);
   };
@@ -50,11 +52,11 @@ export const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Header todoCount={todos.length} />
+      <Header headerText={HEADER_TEXT} />
       <StyledWrapper color="#7affe0" direction="row">
         <TodoPanel mode="add" onClick={addTodo} todoTitle="" />
       </StyledWrapper>
-      {todos.length > 0 ? (
+      {todos ? (
         <TodoList
           todos={todos}
           todoIdForEdit={todoIdForEdit}
