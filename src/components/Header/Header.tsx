@@ -1,16 +1,15 @@
 import React from 'react';
 import styles from './Header.module.css';
+import { StyledWrapper } from '../Wrapper/StyledWrapper';
 
 interface HeaderProps {
-  todoCount: number;
+  headerText: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ todoCount }) => {
+export const Header: React.FC<HeaderProps> = ({ headerText }) => {
   return (
-    <div className={styles.headerContainer}>
-      <p className={styles.headerTitle}>
-        ToDo list with {todoCount} open task(s)
-      </p>
-    </div>
+    <StyledWrapper direction="column" color="#ffffff">
+      <p className={styles.headerTitle}>{headerText}</p>
+    </StyledWrapper>
   );
 };
