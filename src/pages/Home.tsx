@@ -14,7 +14,7 @@ export const Home: React.FC = () => {
     <Wrapper direction="column">
       <Header headerText={HEADER_TEXT} />
 
-      {todos ? (
+      {todos.length !== 0 ? (
         <TodoList />
       ) : (
         <StyledWrapper color="#fff690" direction="column">
