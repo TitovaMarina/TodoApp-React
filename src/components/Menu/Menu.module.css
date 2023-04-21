@@ -1,0 +1,11 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #002997;
+}
+
+.link {
+  padding: 7px 10px;
+  text-decoration: none;
+  border: 1px solid;
+}

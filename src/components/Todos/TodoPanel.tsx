@@ -18,6 +18,7 @@ export const TodoPanel: React.FC<TodoPanelProps> = (props) => {
 
   const onClick = () => {
     if (!isEditMode) {
+      //this is needed to clear the Input field after adding the Todo task to the list
       setTodo('');
     }
     return props.onClick(todo);

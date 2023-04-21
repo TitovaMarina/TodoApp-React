@@ -5,20 +5,15 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Wrapper } from '../Wrapper/Wrapper';
 import { MuiButton } from '../Button/Button';
+import { useTodo } from '../../hooks/useTodo';
 
 interface TodoItemProps {
   todo: Todo;
-  checkTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-  selectTodoIdForEdit: (id: number) => void;
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({
-  todo,
-  checkTodo,
-  deleteTodo,
-  selectTodoIdForEdit,
-}) => {
+export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
+  const { checkTodo, deleteTodo, selectTodoIdForEdit } = useTodo();
+
   const checkboxClick = () => {
     checkTodo(todo.id);
   };

@@ -1,8 +1,6 @@
-.App {
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.active {
+  text-decoration: none;
+  color: white;
+  background-color: #002997;
+  font-weight: 500;
 }
-

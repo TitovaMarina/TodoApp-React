@@ -15,7 +15,7 @@ export const Wrapper: React.FC<WrapperProps> = (props) => {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         flexWrap: 'nowrap',
         flexDirection: direction,
         width: 1,
