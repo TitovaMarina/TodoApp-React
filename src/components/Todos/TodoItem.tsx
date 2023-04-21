@@ -22,8 +22,8 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     checkTodo(todo.id);
   };
 
-  const handleDeleteTag = (tagId: number) => () => {
-    deleteTag(todo.id, tagId);
+  const handleDeleteTag = (tag: string) => () => {
+    deleteTag(todo.id, tag);
   };
 
   return (
@@ -59,11 +59,11 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
           {todo.tags
             ? todo.tags.map((tag) => (
                 <Chip
-                  key={`tag_${tag.id}`}
-                  label={tag.title}
+                  key={`${todo.id}_${tag}`}
+                  label={tag}
                   color="secondary"
                   variant="outlined"
-                  onDelete={handleDeleteTag(tag.id)}
+                  onDelete={handleDeleteTag(tag)}
                   sx={{ m: 0.5 }}
                 ></Chip>
               ))

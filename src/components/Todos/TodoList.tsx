@@ -5,8 +5,12 @@ import { TodoPanel } from './TodoPanel';
 import { StyledWrapper } from '../Wrapper/StyledWrapper';
 import { useTodo } from '../../hooks/useTodo';
 
-export const TodoList: React.FC = () => {
-  const { todos, todoIdForEdit, editTodo } = useTodo();
+interface TodoListProps {
+  todos: Todo[];
+}
+
+export const TodoList: React.FC<TodoListProps> = ({ todos }) => {
+  const { todoIdForEdit, editTodo } = useTodo();
   return (
     <StyledWrapper color="#fff690" direction="column">
       {todos.map((todo) =>
