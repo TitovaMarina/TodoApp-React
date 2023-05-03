@@ -8,6 +8,7 @@ import Chip from '@mui/material/Chip';
 import { Wrapper } from '../Wrapper/Wrapper';
 import { MuiButton } from '../Button/Button';
 import { useTodo } from '../../hooks/useTodo';
+import { useTag } from '../../hooks/useTag';
 
 import { DialogWindow } from '../DialogWindow/DialogWindow';
 
@@ -16,7 +17,8 @@ interface TodoItemProps {
 }
 
 export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
-  const { checkTodo, deleteTodo, selectTodoIdForEdit, deleteTag } = useTodo();
+  const { checkTodo, deleteTodo, selectTodoIdForEdit } = useTodo();
+  const { deleteTag } = useTag();
 
   const checkboxClick = () => {
     checkTodo(todo.id);
@@ -59,7 +61,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
           {todo.tags
             ? todo.tags.map((tag) => (
                 <Chip
-                  key={`${todo.id}_${tag}`}
+                  key={`${todo.id}_tag_${tag}`}
                   label={tag}
                   color="secondary"
                   variant="outlined"

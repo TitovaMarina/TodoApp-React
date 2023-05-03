@@ -9,7 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { MuiButton } from '../Button/Button';
-import { useTodo } from '../../hooks/useTodo';
+import { useTag } from '../../hooks/useTag';
 
 interface DialogWindowProps {
   dialogOpenButtonTitle: string;
@@ -23,7 +23,7 @@ export const DialogWindow: React.FC<DialogWindowProps> = ({
   const [open, setOpen] = React.useState(false);
   const [inputError, setInputError] = React.useState('');
   const [tag, setTag] = React.useState('');
-  const { addTag } = useTodo();
+  const { addTag } = useTag();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,11 +43,11 @@ export const DialogWindow: React.FC<DialogWindowProps> = ({
   const addTodoTag = () => {
     if (!tag) {
       setInputError('Invalid value');
-    } else {
-      addTag(todoId, tag);
-      setTag('');
-      handleClose();
+      return;
     }
+    addTag(todoId, tag);
+    setTag('');
+    handleClose();
   };
 
   return (

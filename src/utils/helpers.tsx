@@ -1,3 +1,7 @@
-export const generateNextId = (array: Todo[]) => {
-  return array.length !== 0 ? array[array.length - 1].id + 1 : 1;
+export const generateNextId = (array: any[]) => {
+  if (array) {
+    const nextId: number = array[0]?.id ? array[array.length - 1].id + 1 : 1;
+    return nextId;
+  }
+  return 0;
 };

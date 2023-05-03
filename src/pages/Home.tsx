@@ -5,18 +5,19 @@ import { StyledWrapper } from '../components/Wrapper/StyledWrapper';
 import { Wrapper } from '../components/Wrapper/Wrapper';
 import { Filter } from '../components/Filter/Filter';
 import { useTodo } from '../hooks/useTodo';
+import { useTag } from '../hooks/useTag';
 
 const HEADER_TEXT = `ToDo tasks list`;
 
 export const Home: React.FC = () => {
+  const { todos } = useTodo();
   const {
-    todos,
     filter,
     defineFilter,
     filteredTodos,
     filterByTag,
     clearFilterResults,
-  } = useTodo();
+  } = useTag();
 
   return (
     <Wrapper direction="column">
