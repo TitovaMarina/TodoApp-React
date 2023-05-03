@@ -9,7 +9,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ headerText }) => {
   return (
     <StyledWrapper direction="column" color="#ffffff">
-      <p className={styles.headerTitle}>{headerText}</p>
+      <header className={styles.headerTitle}>{headerText}</header>
     </StyledWrapper>
   );
 };

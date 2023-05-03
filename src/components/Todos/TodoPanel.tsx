@@ -4,23 +4,23 @@ import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@mui/material/TextField';
 import { MuiButton } from '../Button/Button';
 import { Wrapper } from '../Wrapper/Wrapper';
+import { useTodo } from '../../hooks/useTodo';
 
 interface TodoPanelProps {
   mode: 'add' | 'edit';
   todoTitle: string;
-  onClick: (title: string) => void;
 }
 
 export const TodoPanel: React.FC<TodoPanelProps> = (props) => {
   const isEditMode = props.mode === 'edit';
+  const { editTodo, addTodo } = useTodo();
 
   const [todo, setTodo] = React.useState(isEditMode ? props.todoTitle : '');
 
-  const onClick = () => {
-    if (!isEditMode) {
-      setTodo('');
-    }
-    return props.onClick(todo);
+  const onAddClick = () => {
+    //this is needed to clear the Input field after adding the Todo task to the list
+    setTodo('');
+    return addTodo(todo);
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,11 +40,15 @@ export const TodoPanel: React.FC<TodoPanelProps> = (props) => {
       />
 
       {isEditMode ? (
-        <MuiButton onClick={onClick} startIcon={<SaveIcon />} color="success">
+        <MuiButton
+          onClick={() => editTodo(todo)}
+          startIcon={<SaveIcon />}
+          color="success"
+        >
           Save
         </MuiButton>
       ) : (
-        <MuiButton onClick={onClick} startIcon={<AddIcon />} color="primary">
+        <MuiButton onClick={onAddClick} startIcon={<AddIcon />} color="primary">
           Add
         </MuiButton>
       )}
